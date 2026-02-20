@@ -199,7 +199,9 @@ def write_to_log(filename, entry):
     """Append a log entry to a text file."""
     # *** YOUR CODE HERE ***
     # Open the file in append mode ("a") using a with statement
+    with open(filename, "a") as file:
     # Write the entry + "\n" to the file
+        file.write(entry + "\n")
     pass
 
 
@@ -207,7 +209,9 @@ def read_log(filename):
     """Read and return the entire contents of a log file."""
     # *** YOUR CODE HERE ***
     # Open the file in read mode ("r") using a with statement
+    with open(filename, "r") as file: 
     # Return the result of file.read()
+        return file.read()
     pass
 
 
@@ -244,8 +248,12 @@ def log_to_csv(filename, command, target, result, status):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     # *** YOUR CODE HERE ***
     # Open filename in append mode ("a") with newline=""
+    with open(filename, "a", newline="") as file:
+       writer = csv.writer(file)
+       # Write one row: [timestamp, command, target, result, status]
+       writer.writerow([timestamp, command, target, result, status])
     # Create a csv.writer(file)
-    # Write one row: [timestamp, command, target, result, status]
+    
     pass
 
 
@@ -253,8 +261,12 @@ def read_csv_log(filename):
     """Read and display all rows from the CSV log file."""
     # *** YOUR CODE HERE ***
     # Open filename in read mode ("r") with newline=""
+    with open(filename, "r", newline="") as file:
     # Create a csv.reader(file)
+        reader = csv.reader(file)
     # Loop through rows and print: " | ".join(row)
+        for row in reader: 
+            print(" | ".join[row])
     pass
 
 
@@ -347,16 +359,27 @@ def safe_nslookup(domain):
 def safe_read_log(filename):
     """Read a log file with error handling for missing files."""
     # *** YOUR CODE HERE ***
-    # try:
+    try:
     #     open the file in read mode
+        with open(filename, "r") as file: 
     #     read the content
+            content = file.read()
     #     if content is empty: print "Log file is empty." and return ""
+            if content == "":
+                print("Log file is empty")
+                return ""
+            else: 
+                 return content
     #     else: return the content
-    # except FileNotFoundError:
+    except FileNotFoundError:
     #     print "No log file found. Run a diagnostic first."
+        print("No log file found. Run a diagnostic first.")
     #     return ""
+        return ""
     # finally:
     #     print "Log read attempt completed."
+    finally:
+        print("Log read attempt completed.")
     pass
 
 
@@ -525,5 +548,5 @@ def main():
 #  TEST YOUR WORK
 # ============================================================
 # After completing Tasks 1-3, uncomment the line below to run:
-# main()
+main()
 # ============================================================
