@@ -17,7 +17,7 @@ class PasswordChecker:
     #     "admin", "password", "123456", "root", "guest", "letmein", "welcome"
     #   Create an empty list self.history
     def __init__(self):
-        self.common_password= ["admin", "password", "123456", "root", "guest", "letmain" "welcome", "lab2b3c"]
+        self.common_password= ["admin", "password", "123456", "root", "guest", "letmain","welcome", "lab2b3c"]
         self.history = []
     # TODO: Write check_common(self, password)
     #   Return True if password.lower() is in self.common_passwords
